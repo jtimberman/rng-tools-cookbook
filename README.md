@@ -21,9 +21,9 @@ The rng-tools.default template will use the device in the attribute. This is a n
 License and Author
 ==================
 
-Author:: Joshua Timberman (<cookbooks@housepub.org>)
+Author:: Joshua Timberman (<cookbooks@housepub.org>), Brian Flad (<bflad417@gmail.com>)
 
-Copyright 2011, Joshua Timberman
+Copyright 2012, Joshua Timberman, Brian Flad
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
