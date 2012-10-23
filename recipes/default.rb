@@ -19,7 +19,7 @@
 
 package "rng-tools"
 
-case node'platform_family']
+case node['platform_family']
 when "fedora", "rhel"
   template "/etc/sysconfig/rngd" do
     source "rngd.sysconfig.erb"
