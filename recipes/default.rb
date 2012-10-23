@@ -42,7 +42,9 @@ service "rng-tools" do
   case node['platform_family']
   when "rhel", "fedora"
     service_name "rngd"
+    supports :status => :true, :restart => :true, :reload => :true
+  else
+    supports :restart => true
   end
-  supports :restart => true
   action [:enable, :start]
 end
