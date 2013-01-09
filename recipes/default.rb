@@ -19,15 +19,32 @@
 
 package "rng-tools"
 
-template "/etc/default/rng-tools" do
-  source "rng-tools.default"
-  mode 0644
-  owner "root"
-  group "root"
-  notifies :restart, "service[rng-tools]", :immediately
+case node['platform_family']
+when "fedora", "rhel"
+  template "/etc/sysconfig/rngd" do
+    source "rngd.sysconfig.erb"
+    mode 0644
+    owner "root"
+    group "root"
+    notifies :restart, "service[rng-tools]", :immediately
+  end
+else
+  template "/etc/default/rng-tools" do
+    source "rng-tools.default"
+    mode 0644
+    owner "root"
+    group "root"
+    notifies :restart, "service[rng-tools]", :immediately
+  end
 end
 
 service "rng-tools" do
-  supports :restart => true
+  case node['platform_family']
+  when "rhel", "fedora"
+    service_name "rngd"
+    supports :status => :true, :restart => :true, :reload => :true
+  else
+    supports :restart => true
+  end
   action [:enable, :start]
 end
