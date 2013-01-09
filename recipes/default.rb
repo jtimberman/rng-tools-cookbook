@@ -30,7 +30,7 @@ when "fedora", "rhel"
   end
 else
   template "/etc/default/rng-tools" do
-    source "rng-tools.default"
+    source "rng-tools.default.erb"
     mode 0644
     owner "root"
     group "root"
